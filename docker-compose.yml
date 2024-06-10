@@ -1,0 +1,14 @@
+services:
+  ubuntu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - "${HALIUM_12}:/halium-12:rw"
+      - "${HALIUM_11}:/halium-11:rw"
+      - "${HALIUM_10}:/halium-10:rw"
+      - "${TWRP_BUILD}:/twrp/android-10"
+    container_name: Ubuntu-20.04
+    hostname: Build-Environment
+    tty: true
+    stdin_open: true
