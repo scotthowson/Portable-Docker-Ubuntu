@@ -9,12 +9,13 @@ RUN dpkg --add-architecture i386 && apt-get update
 
 # Update system and install dependencies
 RUN apt-get upgrade -y && \
-    apt-get install -y git python3 python3-pip nano gnupg flex bison gperf build-essential zip curl \
-    libc6-dev libncurses5-dev:i386 x11proto-core-dev libx11-dev:i386 iputils-ping \
-    libreadline6-dev:i386 libgl1-mesa-glx:i386 libgl1-mesa-dev g++-multilib mingw-w64-i686-dev tofrodos \
-    python3-markdown libxml2-utils xsltproc zlib1g-dev:i386 schedtool liblz4-tool bc lzop imagemagick \
-    libncurses5 rsync python-is-python3 python2 bc bison build-essential ca-certificates cpio flex git \
-    kmod libssl-dev libtinfo5 sudo unzip wget xz-utils img2simg jq neofetch zsh
+    apt-get install -y bc bison build-essential ca-certificates cpio flex git \
+    kmod libssl-dev libtinfo5 python2 sudo unzip wget xz-utils img2simg jq gnupg gperf \
+    zip bzr curl libc6-dev libncurses5-dev:i386 x11proto-core-dev \
+    libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-glx:i386 \
+    libgl1-mesa-dev g++-multilib mingw-w64-i686-dev tofrodos \
+    python3-markdown libxml2-utils xsltproc zlib1g-dev:i386 schedtool \
+    liblz4-tool bc lzop imagemagick libncurses5 rsync python-is-python3
 
 # Create bin directory in home and add it to PATH
 RUN mkdir -p ~/bin && \
@@ -46,8 +47,8 @@ RUN mkdir /avb && \
     cd /avb && \
     git clone https://android.googlesource.com/platform/external/avb
 
-# Add AVB tool to PATH by creating a symbolic link
-RUN ln -s /avb/avb/avbtool.py /usr/local/bin/avbtool
+RUN git config --global user.email "${DOCKER_EMAIL}" && \
+    git config --global user.name "${DOCKER_NAME}"
 
 # Command to keep the container running
-CMD ["/bin/zsh"]
+CMD ["/bin/bash"]

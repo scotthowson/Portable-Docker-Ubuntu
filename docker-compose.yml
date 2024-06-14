@@ -3,11 +3,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    privileged: true
     volumes:
-      - "${HALIUM_12}:/halium-12:rw"
-      - "${HALIUM_11}:/halium-11:rw"
-      - "${HALIUM_10}:/halium-10:rw"
-      - "${TWRP_BUILD}:/twrp/android-10"
+      - "${TEST_BUILD}:/OnePlus8-Test:rw"
+      - '${GIT_BUILD_A10}:/Android-10/OnePlus:rw'
+      - '${GIT_BUILD_A11}:/Android-11/OnePlus:rw'
     container_name: Ubuntu-20.04
     hostname: Build-Environment
     tty: true

@@ -39,7 +39,7 @@ docker-compose up -d
 
 To interact with the container, use the following command to get a shell inside the container:
 
-#### Using Bash
+#### Using Bash (Recommended)
 
 ```sh
 docker exec -it ubuntu-kernel-build bash
@@ -50,57 +50,6 @@ docker exec -it ubuntu-kernel-build bash
 ```sh
 docker exec -it ubuntu-kernel-build zsh
 ```
-
-## Verify the Setup
-
-Once inside the container, ensure that all necessary tools and dependencies are installed and correctly configured. You can check some key components as follows:
-
-- **Check i386 Architecture:**
-  ```sh
-  dpkg --print-foreign-architectures
-  ```
-
-- **Verify \`repo\` Tool in PATH:**
-  ```sh
-  which repo
-  ```
-
-- **Verify GitHub SSH Key:**
-  ```sh
-  cat ~/.ssh/known_hosts
-  ```
-
-### Create vbmeta Image
-
-You can create the `vbmeta.img` file using `avbtool`:
-
-```sh
-avbtool make_vbmeta_image --output vbmeta.img --flags 2
-```
-
-## Flashing Images
-
-After building, you will need to flash the images to your device:
-
-1. **Flash `vbmeta.img`:**
-   ```sh
-   fastboot flash vbmeta --disable-verity --disable-verification vbmeta ./vbmeta.img
-   ```
-
-2. **Reboot the Device:**
-   ```sh
-   fastboot reboot
-   ```
-
-## Additional Information
-
-### Directory Structure
-
-- `/avb`: Contains the cloned AVB repository.
-- `~/bin`: Custom bin directory added to PATH for tools like `repo`.
-- `~/.ssh/known_hosts`: Contains known hosts entries to avoid SSH verification issues with GitHub.
-
-### Included Tools and Dependencies
 
 The Dockerfile installs a comprehensive list of tools and dependencies needed for Ubuntu Touch porting, including but not limited to:
 
