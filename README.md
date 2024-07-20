@@ -42,13 +42,19 @@ To interact with the container, use the following command to get a shell inside 
 #### Using Bash (Recommended)
 
 ```sh
-docker exec -it ubuntu-kernel-build bash
+docker exec -it ubuntu-kernel-build /bin/bash -c "cd /A10/build-tools && /bin/bash"
 ```
+##### Build Instructions
 
-#### Using Zsh
+For detailed build instructions, please follow the link below:
+
+[Build Instructions for Ubuntu Touch for OnePlus 8 (Instantnoodle)](https://github.com/scotthowson/build_kernel_instantnoodle?tab=readme-ov-file#ubuntu-touch-for-oneplus-8-instantnoodle)
+
+
+#### Using Zsh (Not Recommended Build Breaks)
 
 ```sh
-docker exec -it ubuntu-kernel-build zsh
+docker exec -it ubuntu-kernel-build zsh -c "cd /A10/build-tools && exec zsh"
 ```
 
 The Dockerfile installs a comprehensive list of tools and dependencies needed for Ubuntu Touch porting, including but not limited to:

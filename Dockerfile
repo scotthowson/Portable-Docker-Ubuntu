@@ -11,13 +11,14 @@ RUN dpkg --add-architecture i386 && apt-get update
 RUN apt-get upgrade -y && \
     apt-get install -y bc bison build-essential ca-certificates cpio flex git \
     kmod libssl-dev libtinfo5 python2 sudo unzip wget xz-utils img2simg jq gnupg gperf \
-    zip bzr curl libc6-dev libncurses5-dev:i386 x11proto-core-dev neofetch\
-    libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-glx:i386 mkbootimg\
+    zip bzr curl libc6-dev libncurses5-dev:i386 x11proto-core-dev neofetch \
+    libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-glx:i386 mkbootimg \
     libgl1-mesa-dev g++-multilib mingw-w64-i686-dev tofrodos \
     python3-markdown libxml2-utils xsltproc zlib1g-dev:i386 schedtool \
     liblz4-tool bc lzop imagemagick libncurses5 rsync python-is-python3 \
     libncurses-dev libgtk2.0-dev libglib2.0-dev qtbase5-dev \
-    libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-render-util0 libxcb-xinerama0
+    libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-render-util0 libxcb-xinerama0 \
+    zsh
 
 # Create bin directory in home and add it to PATH
 RUN mkdir -p ~/bin && \
@@ -51,7 +52,9 @@ RUN mkdir /avb && \
 
 # Set global git configuration
 RUN git config --global user.email "${DOCKER_EMAIL}" && \
-    git config --global user.name "${DOCKER_NAME}"
+    git config --global user.name "${DOCKER_NAME}" && \
+    git config --global safe.directory '*' && \
+    git config --global advice.detachedHead false
 
 # Allow X11 forwarding for GUI applications
 ENV DISPLAY=host.docker.internal:0
