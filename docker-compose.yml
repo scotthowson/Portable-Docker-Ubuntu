@@ -14,7 +14,7 @@ services:
     environment:
       - DISPLAY=${DISPLAY}
       - QT_X11_NO_MITSHM=1 # Disable MIT-SHM to avoid issues in GUI applications
-    container_name: Ubuntu-20.04
+    container_name: ubuntu-kernel-build
     hostname: Build-Environment
     tty: true
     stdin_open: true
