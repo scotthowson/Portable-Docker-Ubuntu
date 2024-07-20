@@ -5,9 +5,15 @@ services:
       dockerfile: Dockerfile
     privileged: true
     volumes:
-      - "${TEST_BUILD}:/OnePlus8-Test:rw"
-      - '${GIT_BUILD_A10}:/Android-10/OnePlus:rw'
-      - '${GIT_BUILD_A11}:/Android-11/OnePlus:rw'
+      - '${GIT_BUILD_A10}:/A10/build-tools:rw'
+      - '${GIT_KERNEL_SRC_A10}:/A10/kernel-source:rw'
+      - "${TWRP_BUILD_A10}:/A10/TWRP:rw"
+      - "/tmp/.X11-unix:/tmp/.X11-unix" # for GUI applications if needed
+    devices:
+      - "/dev/dri:/dev/dri" # GPU device pass-through for AMD RX 6800 XT
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1 # Disable MIT-SHM to avoid issues in GUI applications
     container_name: Ubuntu-20.04
     hostname: Build-Environment
     tty: true
