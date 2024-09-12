@@ -1,19 +1,11 @@
 services:
   ubuntu:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: scotthowson/ubuntu-touch-builder:latest
     privileged: true
     volumes:
-      - '${GIT_BUILD_A10}:/Android-10/build-tools:rw'
-      - '${GIT_BUILD_A10_TESTING}:/Android-10/build-tools-testing:rw'
-      - "/tmp/.X11-unix:/tmp/.X11-unix" # for GUI applications if needed
-    devices:
-      - "/dev/dri:/dev/dri" # GPU device pass-through for AMD RX 6800 XT
-    environment:
-      - DISPLAY=${DISPLAY}
-      - QT_X11_NO_MITSHM=1 # Disable MIT-SHM to avoid issues in GUI applications
-    container_name: ubuntu-kernel-build
+      - '${GIT_BUILD_A10}:/Android-10/OnePlus:rw'
+      - '${GIT_BUILD_TEST_A10}:/Android-10/OnePlus:rw'
+    container_name: Ubuntu-20.04
     hostname: Build-Environment
     tty: true
     stdin_open: true
