@@ -5,7 +5,7 @@ services:
     volumes:
       - '${GIT_BUILD_A10}:/Android-10/OnePlus:rw'
       - '${GIT_BUILD_TEST_A10}:/Android-10/OnePlus:rw'
-    container_name: Ubuntu-20.04
+    container_name: Ubuntu-Touch-Builder
     hostname: Build-Environment
     tty: true
     stdin_open: true
