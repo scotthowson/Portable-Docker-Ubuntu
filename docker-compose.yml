@@ -4,7 +4,7 @@ services:
     privileged: true
     volumes:
       - '${GIT_BUILD_A10}:/Android-10/OnePlus:rw'
-      - '${GIT_BUILD_TEST_A10}:/Android-10/OnePlus:rw'
+      - '${GIT_BUILD_TEST_A10}:/Android-10-Testing/OnePlus:rw'
     container_name: Ubuntu-Touch-Builder
     hostname: Build-Environment
     tty: true

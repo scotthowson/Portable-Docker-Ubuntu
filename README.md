@@ -42,7 +42,7 @@ To interact with the container, use the following command to get a shell inside 
 #### Using Bash (Recommended)
 
 ```sh
-docker exec -it ubuntu-kernel-build /bin/bash -c "cd /A10/build-tools && /bin/bash"
+docker exec -it Ubuntu-Touch-Builder /bin/bash -c "cd /Android-10/OnePlus && /bin/bash"
 ```
 ##### Build Instructions
 
